@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CivicEYE</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body { margin: 0; font-family: 'Segoe UI', sans-serif; }
+    header, footer { background-color: #fff; padding: 10px 40px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ddd; }
+    nav a { margin: 0 15px; text-decoration: none; color: #000; font-weight: 500; }
+    header button {
+      background: #bac3c6; 
+      border: none; 
+      padding: 10px 15px; 
+      color: white; 
+      border-radius: 5px; 
+      font-weight: bold; 
+      cursor: pointer;
+    }
+    header button a { color: #fff; text-decoration: none; }
+
+    .site-image {
+      background: url("{% static 'image/image_1.png' %}") center/cover no-repeat;
+      height: 400px;
+      position: relative;
+    }
+
+    .site-image .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      color: white;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .site-image .nav-arrow.left { left: 10px; }
+    .site-image .nav-arrow.right { right: 10px; }
+
+    .hero {
+      background: #000;
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero button { 
+      background: #00bfff; 
+      border: none; 
+      padding: 10px 20px; 
+      color: white; 
+      border-radius: 5px; 
+      font-weight: bold; 
+      cursor: pointer;
+    }
+    .hero button a { color: #fff; text-decoration: none; }
+
+    .stats, .process { 
+      display: flex; 
+      justify-content: center; 
+      flex-wrap: wrap; 
+      margin: 40px 0; 
+      text-align: center; 
+    }
+
+    .stats div, .process div, .feedback div {
+      padding: 20px; 
+      margin: 10px; 
+      border-radius: 8px; 
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1); 
+      background: #fff; 
+      min-width: 200px; 
+    }
+
+    .step {
+      border: 1px solid #00aaff;
+      padding: 15px;
+      border-radius: 8px;
+      width: 200px;
+      font-size: 12px;
+    }
+
+    .section h2, .feedback h2 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #333;
+      font-family: 'Georgia', serif;
+    }
+
+    .feedback {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+      background: #f8f8f8;
+    }
+
+    .feedback textarea {
+      width: 100%;
+      max-width: 600px;
+      padding: 10px;
+      margin: 20px 0;
+      border-radius: 5px;
+    }
+
+    .feedback button {
+      padding: 10px 20px;
+      background: #00bfff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .contact-section {
+      display: flex;
+      justify-content: space-evenly;
+      padding: 40px 20px;
+      background-color: #fff;
+      gap: 20px;
+    }
+
+    .contact-card {
+      padding: 20px;
+      text-align: center;
+      background: #fff;
+      border-radius: 15px;
+      max-width: 400px;
+      flex: 1;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .contact-card h3 {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 20px 0 10px;
+      font-family: 'Georgia', serif;
+    }
+
+    .contact-card p {
+      font-size: 17px;
+      font-family: 'Georgia', serif;
+    }
+
+    .contact-card p:last-child {
+      color: #00bfff;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .contact-card i {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    footer {
+      background: #000;
+      color: #fff;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: flex-start;
+      text-align: left;
+      padding: 40px;
+    }
+
+    footer div { margin: 10px; }
+    footer a { color: #00bfff; text-decoration: none; font-weight: 500; }
+    footer p { margin: 5px 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <div><img src="logo.png" alt="CivicEYE Logo" height="40"></div>
+    <nav>
+      <a href="{% url 'sign_in' %}"><i class="fas fa-home"></i>Home</a>
+      <a href="{% url 'sign_in' %}"><i class="fas fa-tasks"></i>My Complaints</a>
+      <a href="{% url 'sign_in' %}"><i class="fas fa-info-circle"></i>About</a>
+      <a href="{% url 'sign_in' %}"><i class="fas fa-envelope-open-text"></i>Contact</a>
+      <button><a href="{% url 'sign_in' %}">Login</a></button>
+    </nav>
+  </header>
+
+  <div class="site-image">
+    <div class="nav-arrow left">&#60;</div>
+    <div class="nav-arrow right">&#62;</div>
+  </div>
+
+  <div class="hero">
+    <h1>Make Your Voice Heard!</h1>
+    <h1>Report Problems, Help Your City, and Earn Rewards!</h1>
+    <button><a href="{% url 'sign_up' %}">Sign up</a></button>
+  </div>
+
+  <section class="stats">
+    <div>
+      <i class="fas fa-envelope"></i>
+      <h3>Complaints registered</h3>
+      <p>1002</p>
+    </div>
+    <div>
+      <i class="fas fa-comment-dots"></i>
+      <h3>Reports filed</h3>
+      <p>992</p>
+    </div>
+    <div>
+      <i class="fas fa-trophy"></i>
+      <h3>Rewards distributed</h3>
+      <p>886</p>
+    </div>
+    <div>
+      <i class="fas fa-gavel"></i>
+      <h3>Impact made</h3>
+      <p>......</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>What we do</h2>
+    <div class="process">
+      <div class="step">You Register the Complaint</div>
+      <div class="step">Our Team Verifies the Complaint and shares it to the responsible authorities</div>
+      <div class="step">The responsible authorities processes the complaint</div>
+      <div class="step">Your incentive is provided once the complaint is processed</div>
+    </div>
+  </section>
+
+  <section class="feedback">
+    <h2>What our users have to say</h2>
+    <section class="process">
+      <div>
+        This is awesome website<br>Simplifies the complaint registration process<br>- <strong>Joimon</strong>
+      </div>
+      <div>
+        This is awesome website<br>Simplifies the complaint registration process<br>- <strong>Joimon</strong>
+      </div>
+    </section>
+    <textarea placeholder="Write your feedback"></textarea><br>
+    <button>Submit</button>
+  </section>
+
+  <section class="contact-section">
+    <div class="contact-card">
+      <i class="fas fa-envelope"></i>
+      <h3>Support Mail</h3>
+      <p>For any assistance or inquiries about reporting issues or using Civic Eye, feel free to reach out to us.</p>
+      <p>support@civiceye.com</p>
+    </div>
+    <div class="contact-card">
+      <i class="fas fa-phone-alt"></i>
+      <h3>Make A Call</h3>
+      <p>Need immediate assistance or have questions about using Civic Eye? Give us a call, and our team will guide you through.</p>
+      <p>+123 456 7890</p>
+    </div>
+  </section>
+
+  <footer>
+    <div>
+      <h4><i class="fas fa-phone"></i> Phone Numbers</h4>
+      <p><i class="fas fa-shield-alt"></i> Military: (123) 456-7890</p>
+      <p><i class="fas fa-balance-scale"></i> State Police: (123) 456-7891</p>
+      <p><i class="fas fa-fire"></i> Fire Dept: (123) 456-7892</p>
+    </div>
+    <div>
+      <h4><i class="fas fa-info-circle"></i> Contact Info</h4>
+      <p><i class="fas fa-building"></i> Softronics</p>
+      <p><i class="fas fa-phone-alt"></i> (+12) 34-5678</p>
+      <p><i class="fas fa-envelope"></i> softronics@gmail.com</p>
+    </div>
+    <div>
+      <h4><i class="fas fa-link"></i> Quick links</h4>
+      <p><a href="{% url 'sign_in' %}"><i class="fas fa-home"></i> Home</a></p>
+      <p><a href="{% url 'sign_in' %}"><i class="fas fa-comments"></i> Complaints</a></p>
+      <p><a href="{% url 'sign_up' %}"><i class="fas fa-user-plus"></i> Register</a></p>
+      <p><a href="{% url 'sign_in' %}"><i class="fas fa-sign-in-alt"></i> Login</a></p>
+    </div>
+    <div style="flex-basis: 100%; text-align: center; margin-top: 20px;">
+      <p>Â© CivicEye 2025 | Empowering Citizens, Improving Communities.</p>
+    </div>
+  </footer>
+</body>
+</html>

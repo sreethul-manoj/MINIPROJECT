@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CivicEye Sign Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #f5f5f5;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      background-color: #fff;
+      width: 100%;
+      max-width: 1100px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      flex-wrap: wrap;
+    }
+
+    .left, .right {
+      flex: 1 1 50%;
+      padding: 60px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .left {
+      text-align: center;
+      border-right: 1px solid #ccc;
+    }
+
+    .logo {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo::before {
+      content: "";
+      width: 30px;
+      height: 24px;
+      background: url('https://img.icons8.com/ios-filled/50/security-camera.png') no-repeat center center;
+      background-size: contain;
+    }
+
+    .logo span {
+      color: #00bfff;
+    }
+
+    .left p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .right form {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 28px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    h2 span {
+      color: #00bfff;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="tel"],
+    input[type="date"] {
+      padding: 14px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      width: 100%;
+      font-family: 'Georgia', serif;
+    }
+
+    .btn {
+      padding: 14px;
+      background-color: #00bfff;
+      color: #fff;
+      font-size: 16px;
+      font-family: 'Montserrat', sans-serif;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      background-color: #009ad6;
+    }
+
+    .signin-link {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .signin-link a {
+      color: #00bfff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .left, .right {
+        flex: 1 1 100%;
+        padding: 40px 20px;
+        border: none;
+      }
+
+      .left {
+        border-bottom: 1px solid #ccc;
+      }
+
+      .logo {
+        font-size: 26px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo::before {
+        width: 22px;
+        height: 18px;
+      }
+
+      .left p {
+        font-size: 14px;
+      }
+
+      input, .btn {
+        font-size: 14px;
+        padding: 12px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <div class="logo">Civic<span>EYE</span></div>
+      <p>
+        Welcome to CivicEye!<br><br>
+        Your platform to report,<br>
+        track, and resolve public<br>
+        issues with ease.
+      </p>
+    </div>
+    <div class="right">
+      <form method="POST">
+        {% csrf_token %}
+        <h2>SIGN <span>UP</span></h2>
+        <input type="text" name="fullname" placeholder="Full Name" required />
+        <input type="tel" name="mobile_number" placeholder="Mobile Number" required />
+        <input type="date" name="date_of_birth" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="password" name="password" placeholder="Password" required />
+        <button type="submit" class="btn">Sign Up</button>
+        <div class="signin-link">
+          Already have an account?
+          <a href="{% url 'sign_in' %}">Sign in</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

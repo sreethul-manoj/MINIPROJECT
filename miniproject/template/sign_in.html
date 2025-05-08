@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CivicEye Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #f5f5f5;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      background-color: #fff;
+      width: 100%;
+      max-width: 1100px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      flex-wrap: wrap;
+    }
+
+    .left, .right {
+      flex: 1 1 50%;
+      padding: 60px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .left {
+      background-color: #ffffff;
+      border-right: 1px solid #ddd;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo::before {
+      content: "";
+      width: 30px;
+      height: 24px;
+      background: url('https://img.icons8.com/ios-filled/50/security-camera.png') no-repeat center center;
+      background-size: contain;
+    }
+
+    .logo span {
+      color: #00bfff;
+    }
+
+    .left p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .right form {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 28px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    h2 span {
+      color: #00bfff;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      padding: 14px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      width: 100%;
+    }
+
+    .forgot {
+      text-align: right;
+      margin-bottom: 20px;
+    }
+
+    .forgot a {
+      font-size: 13px;
+      color: #00bfff;
+      text-decoration: none;
+    }
+
+    .btn {
+      padding: 14px;
+      background-color: #00bfff;
+      color: #fff;
+      font-size: 16px;
+      font-family: 'Montserrat', sans-serif;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background-color: #009ad6;
+    }
+
+    .signup {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .signup a {
+      color: #00bfff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .left, .right {
+        flex: 1 1 100%;
+        padding: 40px 20px;
+        border: none;
+      }
+
+      .left {
+        border-bottom: 1px solid #ddd;
+      }
+
+      .logo {
+        font-size: 26px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      .logo::before {
+        width: 22px;
+        height: 18px;
+      }
+
+      input[type="email"],
+      input[type="password"] {
+        font-size: 14px;
+      }
+
+      .btn {
+        font-size: 15px;
+        padding: 12px;
+      }
+
+      .left p {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <div class="logo">Civic<span>EYE</span></div>
+      <p>
+        Welcome to CivicEye!<br><br>
+        Your platform to report,<br>
+        track, and resolve public<br>
+        issues with ease.
+      </p>
+    </div>
+    <div class="right">
+      <form method="post">
+        {% csrf_token %}
+        <h2>SIGN <span>IN</span></h2>
+
+        <!-- Display error messages -->
+        {% if messages %}
+          {% for message in messages %}
+            <p class="error-message">{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <div class="forgot">
+          <a href="#">Forgot Password?</a>
+        </div>
+
+        <!-- Corrected submit button -->
+        <button class="btn" type="submit">SIGN IN</button>
+
+        <div class="signup">
+          Don't have an account? <a href="{% url 'sign_up' %}">Sign up</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

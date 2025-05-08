@@ -1,0 +1,248 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <title>CivicEYE</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ccc;
+    }
+    header h1 {
+      color: #00bfff;
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+    
+    .profile {
+      position: relative;
+      display: inline-block;
+      
+    }
+
+    .profile-icon {
+      font-size: 32px;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 35px;
+      background-color: white;
+      min-width: 150px;
+      border: 1px solid #ccc;
+      z-index: 1;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: black;
+      font-size: 14px;
+    }
+
+    .dropdown a:hover {
+      background-color: #ffffff;
+    }
+
+    .profile:hover .dropdown {
+      display: block;
+    }
+    .hero {
+      background: url("{% static 'image/image_1.png' %}") center/cover no-repeat;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .section {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .cards {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      width: 180px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    }
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin: 20px 0;
+    }
+    .stat {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    }
+    .process {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 30px;
+    }
+    .feedback {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .feedback textarea {
+      width: 80%;
+      height: 100px;
+      margin: 10px 0;
+    }
+    .footer {
+      background-color: #000;
+      color: white;
+      padding: 30px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    .footer h4 {
+      color: #00bfff;
+    }
+    .footer a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CivicEYE</h1>
+    <nav>
+      <a href="{% url 'user_home_login' %}"><i class="fas fa-home"></i>Home</a>
+      <a href="{% url 'view_complaint' %}"><i class="fas fa-tasks"></i> My Complaints</a>
+      <a href="#"><i class="fas fa-info-circle"></i>About</a>
+      <a href="#"><i class="fas fa-envelope-open-text"></i>Contact</a>
+    </nav>
+    <div class="profile">
+      <i class="fas fa-user-circle profile-icon"></i>
+      <div class="dropdown">
+        <a href="#"><i class="fas fa-user"></i> Profile</a>
+        <a href="#"><i class="fas fa-user-slash"></i> Delete Account</a>
+        <a href="{% url 'sign_in' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </div>
+    </div>
+  </div>
+  </header>
+
+  <div class="hero"></div>
+
+  <section class="section">
+    <h2>Register Complaints</h2>
+    <div class="cards">
+      <a href="{% url 'register_complaint' %}" style="text-decoration: none; color: inherit;">
+        <div class="card"><i class="fas fa-trash-alt"></i>Waste Dumping</div>
+      </a>
+      <a href="{% url 'register_complaint' %}" style="text-decoration: none; color: inherit;">
+        <div class="card"><i class="fas fa-exclamation-triangle"></i>Public Nuisance</div>
+      </a>
+      <a href="{% url 'register_complaint' %}" style="text-decoration: none; color: inherit;">
+        <div class="card"><i class="fas fa-traffic-light"></i>Traffic Violations</div>
+      </a>
+      <a href="{% url 'register_complaint' %}" style="text-decoration: none; color: inherit;">
+        <div class="card"><i class="fas fa-ellipsis-h"></i>Others</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Complaint Reports</h2>
+    <div class="stats">
+      <div class="stat">
+        <h3>Complaints registered</h3>
+        <p>1002</p>
+      </div>
+      <div class="stat">
+        <h3>Reports filed</h3>
+        <p>992</p>
+      </div>
+      <div class="stat">
+        <h3>Rewards distributed</h3>
+        <p>886</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>What we do</h2>
+    <div class="process">
+      <div class="card">You Register the Complaint</div>
+      <div class="card">Our Team Verifies and shares to Authorities</div>
+      <div class="card">Authorities process the complaint</div>
+      <div class="card">You receive the incentive</div>
+    </div>
+  </section>
+
+  <section class="section feedback">
+    <h2>What our users have to say</h2>
+    <p>"This is an awesome website. Simplifies the complaint registration process" – Joimon</p>
+    <textarea placeholder="Write your feedback"></textarea><br/>
+    <button>Submit</button>
+  </section>
+
+  <section class="section">
+    <h2>Support Mail</h2>
+    <p>support@civiceye.com</p>
+    <h2>Make A Call</h2>
+    <p>+123 456 7890</p>
+  </section>
+
+  <footer class="footer">
+    <div>
+      <h4>Phone Numbers</h4>
+      <p>Military: (123) 456-7890</p>
+      <p>State Police: (123) 456-7891</p>
+      <p>Fire Department: (123) 456-7892</p>
+    </div>
+    <div>
+      <h4>Contact Info</h4>
+      <p>Softronics</p>
+      <p>(+12) 34-5678</p>
+      <p>Softronics@gmail.com</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <a href="{% url 'user_home_login' %}">Home</a>
+      <a href="{% url 'register_complaint' %}">Complaints</a>
+      <a href="{% url 'sign_up' %}">Register</a>
+      <a href="{% url 'sign_in' %}">Login</a>
+    </div>
+  </footer>
+</body>
+</html>

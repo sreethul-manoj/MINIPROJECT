@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CivicEYE - My Complaints</title>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    /* Header */
+    header {
+      background-color: #fff;
+      padding: 10px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    header .logo img {
+      height: 40px;
+      margin-right: 15px;
+    }
+
+    header .logo span {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: #333;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #000;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 15px;
+    }
+
+    nav a:hover {
+      color: #00aaff;
+    }
+
+    /* Profile Dropdown */
+    .profile-menu {
+      position: relative;
+    }
+
+    .profile-icon {
+      font-size: 20px;
+      cursor: pointer;
+      color: #000;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: white;
+      min-width: 160px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 1001;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .dropdown a {
+      color: #333;
+      padding: 10px 15px;
+      text-decoration: none;
+      display: block;
+      font-size: 14px;
+    }
+
+    .dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .profile-menu:hover .dropdown {
+      display: block;
+    }
+
+    /* Content */
+    .content {
+      padding: 40px 60px;
+    }
+
+    .complaints-box {
+      background-color: #e0e0e0;
+      padding: 24px;
+      font-weight: 600;
+      font-size: 18px;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      max-width: 80%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .complaint-card {
+      background-color: #fff;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    }
+
+    .complaint-card h3 {
+      margin-bottom: 10px;
+      color: #007acc;
+    }
+
+    .complaint-card p {
+      margin: 6px 0;
+    }
+
+    .complaint-card img {
+      max-width: 100%;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <div class="logo">Civic<span>EYE</span></div>
+    </div>
+
+    <nav>
+      <a href="{% url 'user_home_login' %}"><i class="fas fa-home"></i> Home</a>
+      <a href="{% url 'view_complaint' %}"><i class="fas fa-tasks"></i> My Complaints</a>
+      <a href="#"><i class="fas fa-info-circle"></i> About</a>
+      <a href="#"><i class="fas fa-envelope-open-text"></i> Contact</a>
+
+      <!-- Profile Dropdown -->
+      <div class="profile-menu">
+        <i class="fas fa-user-circle profile-icon"></i>
+        <div class="dropdown">
+          <a href="#"><i class="fas fa-user"></i> Profile</a>
+          <a href="#"><i class="fas fa-user-slash"></i> Delete Account</a>
+          <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Content -->
+  <div class="content">
+    <div class="complaints-box">
+      <i class="fas fa-exclamation-triangle"></i> My Submitted Complaints
+    </div>
+
+    {% if complaints %}
+      {% for complaint in complaints %}
+        <div class="complaint-card">
+          <h3>{{ complaint.get_complaint_type_display  }}</h3>
+          <p><strong>Description:</strong> {{ complaint.description }}</p>
+          <p><strong>Location:</strong> {{ complaint.location }}</p>
+          <p><strong>Submitted at:</strong> {{ complaint.submitted_at|date:"M d, Y H:i" }}</p>
+          {% if complaint.proof %}
+            <p><strong>Proof:</strong></p>
+            <img src="{{ Complaint.proof.url }}" alt="Proof Image" height="200" width=" 200" >
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% else %}
+      <p style="margin-top: 20px; font-style: italic;">You haven’t submitted any complaints yet.</p>
+    {% endif %}
+  </div>
+
+</body>
+</html>

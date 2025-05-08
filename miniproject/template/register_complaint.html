@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Report Issues Seamlessly</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      margin: 0;
+      padding-top: 40px;
+      background-color: #ffffff;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      text-align: center;
+      max-width: 600px;
+      font-size: 14px;
+      margin-bottom: 40px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    label {
+      margin-bottom: 5px;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    input[type="text"],
+    select,
+    input[type="file"] {
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      border: 1px solid #999;
+      border-radius: 5px;
+      width: 100%;
+    }
+
+    input[type="file"] {
+      background-color: #f0f0f0;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 20px;
+    }
+
+    .submit-btn,
+    .cancel-btn {
+      background-color: #1797dd;
+      border: none;
+      color: #fff;
+      padding: 12px 0;
+      font-size: 16px;
+      border-radius: 5px;
+      flex: 1;
+      cursor: pointer;
+    }
+
+    .cancel-btn {
+      background-color: #ccc;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Report Issues Seamlessly</h1>
+  <p>Our platform empowers users to submit complaints with ease, offering tools to upload multimedia for comprehensive issue reporting.</p>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <label for="description">Description</label>
+    <input type="text" id="description" name="description" required>
+
+    <label for="complaint-type">Complaint type</label>
+    <select id="complaint-type" name="complaint_type" required>
+      <option value="" disabled selected>Select a type</option>
+                <option value="waste_dumping">Waste Dumping</option>
+                <option value="public_nuisance">Public Nuisance</option>
+                <option value="traffic_violations">Traffic Violations</option>
+                <option value="water_leakage">Water Leakage</option>
+                <option value="street_light">Street Light Issue</option>
+                <option value="noise_pollution">Noise Pollution</option>
+                <option value="illegal_construction">Illegal Construction</option>
+                <option value="stray_animals">Stray Animals</option>
+                <option value="other">Other</option>
+    </select>
+
+    <label for="location">Location</label>
+    <input type="text" id="location" name="location" required>
+
+    <label for="proof">Proof (Photo or Video)</label>
+    <input type="file" id="proof" name="proof">
+
+    <div class="button-group">
+      <button type="submit" class="submit-btn"><a href="{% url 'success' %}" >Submit</button></a>
+      <button type="button" class="cancel-btn" onclick="window.history.back()">Cancel</button>
+    </div>
+  </form>
+</body>
+</html>
