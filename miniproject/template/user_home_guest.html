@@ -13,17 +13,20 @@
     header button {
       background: #bac3c6; 
       border: none; 
-      padding: 10px 15px; 
+      padding: 10px 10px; 
       color: white; 
       border-radius: 5px; 
       font-weight: bold; 
       cursor: pointer;
     }
     header button a { color: #fff; text-decoration: none; }
+    header h2 {
+      color: #00bfff;
+    }
 
     .site-image {
-      background: url("{% static 'image/image_1.png' %}") center/cover no-repeat;
-      height: 400px;
+      background: url("{% static 'image/mm.webp' %}") center/cover no-repeat;
+      height: 550px;
       position: relative;
     }
 
@@ -43,10 +46,10 @@
     .site-image .nav-arrow.right { right: 10px; }
 
     .hero {
-      background: #000;
       color: white;
       text-align: center;
       padding: 60px 20px;
+      padding-top: 26%;
     }
 
     .hero h1 { font-size: 2rem; margin: 10px 0; }
@@ -84,6 +87,9 @@
       border-radius: 8px;
       width: 200px;
       font-size: 12px;
+    }
+    .step:hover {
+      background-color: #28a745;
     }
 
     .section h2, .feedback h2 {
@@ -138,6 +144,9 @@
       flex: 1;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
+    .contact-card:hover {
+      background-color: #ed0f26;
+    }
 
     .contact-card h3 {
       font-size: 28px;
@@ -176,16 +185,17 @@
     footer div { margin: 10px; }
     footer a { color: #00bfff; text-decoration: none; font-weight: 500; }
     footer p { margin: 5px 0; }
+  
   </style>
 </head>
 <body>
   <header>
-    <div><img src="logo.png" alt="CivicEYE Logo" height="40"></div>
+    <h2>CivicEYE</h2>
     <nav>
       <a href="{% url 'sign_in' %}"><i class="fas fa-home"></i>Home</a>
       <a href="{% url 'sign_in' %}"><i class="fas fa-tasks"></i>My Complaints</a>
-      <a href="{% url 'sign_in' %}"><i class="fas fa-info-circle"></i>About</a>
-      <a href="{% url 'sign_in' %}"><i class="fas fa-envelope-open-text"></i>Contact</a>
+      <a href="{% url 'about_view' %}"><i class="fas fa-info-circle"></i>About</a>
+      <a href="{% url 'contact_view' %}"><i class="fas fa-envelope-open-text"></i>Contact</a>
       <button><a href="{% url 'sign_in' %}">Login</a></button>
     </nav>
   </header>
@@ -193,12 +203,13 @@
   <div class="site-image">
     <div class="nav-arrow left">&#60;</div>
     <div class="nav-arrow right">&#62;</div>
-  </div>
+  
 
   <div class="hero">
     <h1>Make Your Voice Heard!</h1>
     <h1>Report Problems, Help Your City, and Earn Rewards!</h1>
     <button><a href="{% url 'sign_up' %}">Sign up</a></button>
+  </div>
   </div>
 
   <section class="stats">
@@ -236,7 +247,7 @@
 
   <section class="feedback">
     <h2>What our users have to say</h2>
-    <section class="process">
+    <section class="process" >
       <div>
         This is awesome website<br>Simplifies the complaint registration process<br>- <strong>Joimon</strong>
       </div>
@@ -244,8 +255,8 @@
         This is awesome website<br>Simplifies the complaint registration process<br>- <strong>Joimon</strong>
       </div>
     </section>
-    <textarea placeholder="Write your feedback"></textarea><br>
-    <button>Submit</button>
+    
+    
   </section>
 
   <section class="contact-section">

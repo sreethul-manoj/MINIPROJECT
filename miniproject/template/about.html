@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About - CivicEYE</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #0057a0;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .highlight {
+      font-weight: bold;
+      color: #007acc;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #777;
+    }
+
+    ul {
+      margin-left: 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>About CivicEYE</h1>
+
+    <p>
+      <span class="highlight">CivicEYE</span> is a public complaint registration portal designed to empower citizens to report issues directly to the authorities.
+    </p>
+
+    <p>
+      Users can easily <strong>register complaints</strong> through the platform by providing details and uploading relevant images. Each complaint is securely stored and made accessible to the admin team for review and action.
+    </p>
+
+    <p>
+      <strong>Key Features:</strong>
+      <ul>
+        <li>User-friendly complaint registration form</li>
+        <li>Option to upload complaint-related images</li>
+        <li>Admin dashboard to view and manage all complaints</li>
+        <li>Status tracking and timely updates</li>
+      </ul>
+    </p>
+
+    <p>
+      Our mission is to create a transparent, efficient, and accountable system for addressing public issues — from potholes and garbage to illegal activities and safety concerns.
+    </p>
+
+    <div class="footer">
+      &copy; 2025 CivicEYE. All rights reserved.
+      <a href="{% url 'user_home_login' %}" class="back-link">← Back to Home</a>
+    </div>
+  </div>
+</body>
+</html>

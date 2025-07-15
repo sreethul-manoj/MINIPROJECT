@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Info</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 60px auto;
+      background-color: white;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .section {
+      margin-top: 30px;
+    }
+
+    .section h2 {
+      font-size: 20px;
+      border-bottom: 2px solid #0077cc;
+      padding-bottom: 8px;
+      margin-bottom: 15px;
+      color: #0077cc;
+    }
+
+    .info-item {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      padding: 10px;
+      background-color: #f8f9fb;
+      border-radius: 6px;
+    }
+
+    .label {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .value {
+      color: #555;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Contact Information</h1>
+
+    <div class="section">
+      <h2>Emergency Numbers</h2>
+      <div class="info-item">
+        <div class="label">Military</div>
+        <div class="value">(123) 456-7890</div>
+      </div>
+      <div class="info-item">
+        <div class="label">State Police</div>
+        <div class="value">(123) 456-7891</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Fire Dept</div>
+        <div class="value">(123) 456-7892</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Company Contact</h2>
+      <div class="info-item">
+        <div class="label">Name</div>
+        <div class="value">Softronics</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Phone</div>
+        <div class="value">(+12) 34-5678</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Email</div>
+        <div class="value">softronics@gmail.com</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      &copy; 2025 Softronics. All rights reserved.
+      <a href="{% url 'user_home_login' %}" class="back-link">← Back to Home</a>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -13,6 +13,7 @@
       padding: 0;
     }
     
+
     header {
       display: flex;
       justify-content: space-between;
@@ -21,20 +22,21 @@
       padding: 10px 20px;
       border-bottom: 1px solid #ccc;
     }
+
     header h1 {
       color: #00bfff;
     }
+
     nav a {
-      margin: 0 15px;
+      margin: 0 10px;
       text-decoration: none;
       color: black;
       font-weight: bold;
     }
-    
+
     .profile {
       position: relative;
       display: inline-block;
-      
     }
 
     .profile-icon {
@@ -63,23 +65,28 @@
     }
 
     .dropdown a:hover {
-      background-color: #ffffff;
+      background-color: #f0f0f0;
     }
 
     .profile:hover .dropdown {
       display: block;
     }
+
     .hero {
-      background: url("{% static 'image/image_1.png' %}") center/cover no-repeat;
-      height: 300px;
+      background: url("{% static 'image/com.jpg' %}") center/cover no-repeat;
+      height: 550px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
+    
+
     .section {
       text-align: center;
       padding: 40px 20px;
     }
+    
+
     .cards {
       display: flex;
       justify-content: center;
@@ -87,6 +94,10 @@
       flex-wrap: wrap;
       margin-top: 20px;
     }
+    .card:hover {
+      background-color: #6c757d;;
+    }
+
     .card {
       border: 1px solid #ddd;
       border-radius: 8px;
@@ -94,18 +105,21 @@
       width: 180px;
       box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
     }
+
     .stats {
       display: flex;
       justify-content: center;
       gap: 40px;
       margin: 20px 0;
     }
+
     .stat {
       background-color: white;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
     }
+
     .process {
       display: flex;
       flex-wrap: wrap;
@@ -113,32 +127,53 @@
       gap: 10px;
       margin-top: 30px;
     }
+
     .feedback {
       text-align: center;
       margin-top: 40px;
     }
+
     .feedback textarea {
-      width: 80%;
+      width: 100%;
+      max-width: 600px;
       height: 100px;
       margin: 10px 0;
     }
-    .footer {
-      background-color: #000;
-      color: white;
-      padding: 30px;
+
+    .feedback-box {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      width: 280px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    footer {
+      background: #000;
+      color: #fff;
       display: flex;
-      justify-content: space-around;
       flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: flex-start;
+      text-align: left;
+      padding: 40px;
     }
-    .footer h4 {
-      color: #00bfff;
+
+    footer div { margin: 10px; }
+    footer a { color: #00bfff; text-decoration: none; font-weight: 500; }
+    footer p { margin: 5px 0; }
+
+    .pagination {
+      margin-top: 20px;
     }
-    .footer a {
-      color: white;
+
+    .pagination a {
+      margin: 0 5px;
       text-decoration: none;
-      display: block;
-      margin: 5px 0;
+      color: #007bff;
     }
+
   </style>
 </head>
 <body>
@@ -147,18 +182,17 @@
     <nav>
       <a href="{% url 'user_home_login' %}"><i class="fas fa-home"></i>Home</a>
       <a href="{% url 'view_complaint' %}"><i class="fas fa-tasks"></i> My Complaints</a>
-      <a href="#"><i class="fas fa-info-circle"></i>About</a>
-      <a href="#"><i class="fas fa-envelope-open-text"></i>Contact</a>
+      <a href="{% url 'about_view' %}"><i class="fas fa-info-circle"></i>About</a>
+      <a href="{% url 'contact_view' %}"><i class="fas fa-envelope-open-text"></i>Contact</a>
     </nav>
     <div class="profile">
       <i class="fas fa-user-circle profile-icon"></i>
       <div class="dropdown">
-        <a href="#"><i class="fas fa-user"></i> Profile</a>
-        <a href="#"><i class="fas fa-user-slash"></i> Delete Account</a>
-        <a href="{% url 'sign_in' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        <a href="{% url 'edit_profile' %}"><i class="fas fa-user"></i> Profile</a>
+        <a href="{% url 'delete_user' %}"><i class="fas fa-user-slash"></i> Delete Account</a>
+        <a href="{% url 'sign_out' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
       </div>
     </div>
-  </div>
   </header>
 
   <div class="hero"></div>
@@ -186,7 +220,7 @@
     <div class="stats">
       <div class="stat">
         <h3>Complaints registered</h3>
-        <p>1002</p>
+        <p>{{ user_complaint_count }}</p>
       </div>
       <div class="stat">
         <h3>Reports filed</h3>
@@ -209,12 +243,12 @@
     </div>
   </section>
 
-  <section class="section feedback">
-    <h2>What our users have to say</h2>
-    <p>"This is an awesome website. Simplifies the complaint registration process" – Joimon</p>
-    <textarea placeholder="Write your feedback"></textarea><br/>
-    <button>Submit</button>
-  </section>
+<!-- #### -->
+   <a href="{% url 'feedback_view' %}" style="text-decoration: none; color: inherit;">
+        <div class="card" style=" margin-left: 40%; margin-top: 2%; padding-left: 70px;padding-bottom: 1%;padding-top: 1%;">
+          <h3><i class="fas fa-comment-dots"></i> Your feedback</h3></div>
+    </a>
+
 
   <section class="section">
     <h2>Support Mail</h2>
@@ -223,25 +257,29 @@
     <p>+123 456 7890</p>
   </section>
 
-  <footer class="footer">
+  <footer style="display: flex;">
+    
     <div>
-      <h4>Phone Numbers</h4>
-      <p>Military: (123) 456-7890</p>
-      <p>State Police: (123) 456-7891</p>
-      <p>Fire Department: (123) 456-7892</p>
+      <h4><i class="fas fa-phone"></i> Phone Numbers</h4>
+      <p><i class="fas fa-shield-alt"></i> Military: (123) 456-7890</p>
+      <p><i class="fas fa-balance-scale"></i> State Police: (123) 456-7891</p>
+      <p><i class="fas fa-fire"></i> Fire Dept: (123) 456-7892</p>
     </div>
     <div>
-      <h4>Contact Info</h4>
-      <p>Softronics</p>
-      <p>(+12) 34-5678</p>
-      <p>Softronics@gmail.com</p>
+      <h4><i class="fas fa-info-circle"></i> Contact Info</h4>
+      <p><i class="fas fa-building"></i> Softronics</p>
+      <p><i class="fas fa-phone-alt"></i> (+12) 34-5678</p>
+      <p><i class="fas fa-envelope"></i> softronics@gmail.com</p>
     </div>
     <div>
-      <h4>Quick Links</h4>
-      <a href="{% url 'user_home_login' %}">Home</a>
-      <a href="{% url 'register_complaint' %}">Complaints</a>
-      <a href="{% url 'sign_up' %}">Register</a>
-      <a href="{% url 'sign_in' %}">Login</a>
+      <h4><i class="fas fa-link"></i> Quick links</h4>
+      <p><a href="{% url 'user_home_login' %}"><i class="fas fa-home"></i> Home</a></p>
+      <p><a href="{% url 'register_complaint' %}"><i class="fas fa-comments"></i> Complaints</a></p>
+      <p><a href="{% url 'sign_up' %}"><i class="fas fa-user-plus"></i> Register</a></p>
+      <p><a href="{% url 'sign_out' %}"><i class="fas fa-sign-in-alt"></i> Login</a></p>
+    </div>
+    <div style="flex-basis: 100%; text-align: center; margin-top: 20px;">
+      <p>Â© CivicEye 2025 | Empowering Citizens, Improving Communities.</p>
     </div>
   </footer>
 </body>
