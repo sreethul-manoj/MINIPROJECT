@@ -210,7 +210,7 @@
         {% csrf_token %}
         <h2>SIGN <span>IN</span></h2>
 
-        <!-- Display error messages -->
+        
         {% if messages %}
           {% for message in messages %}
             <p class="error-message">{{ message }}</p>
@@ -223,7 +223,7 @@
           <a href="#">Forgot Password?</a>
         </div>
 
-        <!-- Corrected submit button -->
+        
         <button class="btn" type="submit">SIGN IN</button>
 
         <div class="signup">
@@ -234,4 +234,3 @@
   </div>
 </body>
 </html>
-

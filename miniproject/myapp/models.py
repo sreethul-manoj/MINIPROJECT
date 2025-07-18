@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.hashers import make_password
 
 class Signup(models.Model):  
     fullname = models.CharField(max_length=50)
@@ -23,6 +24,11 @@ class Complaint(models.Model):
         ('stray_animals', 'Stray Animals'),
         ('other', 'Other'),
     ]
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('in_progress', 'In progress'),
+        ('resolved', 'Resolved'),
+    ]
 
     user = models.ForeignKey(Signup, on_delete=models.CASCADE)
     description = models.TextField()
@@ -30,14 +36,11 @@ class Complaint(models.Model):
     location = models.CharField(max_length=255)
     proof = models.FileField(upload_to='media/image', null=True, blank=True)
     submitted_at = models.DateTimeField(auto_now_add=True)
-
-    # ✅ Add this line:
     verified = models.BooleanField(default=False)
+    status=models.CharField(max_length=50, choices=STATUS_CHOICES, default='pending')
 
     def __str__(self):
-        return f"{self.user.email} - {self.complaint_type}"
-    
-
+        return f"{self.get_complaint_type_display()} at {self.location}"
     
 
 
@@ -50,12 +53,3 @@ class Feedback(models.Model):
     def __str__(self):
         return f"{self.name} - {self.submitted_at.strftime('%Y-%m-%d %H:%M')}"
     
-
-class User(models.Model):
-    Name=models.CharField(max_length=50)
-    Email=models.CharField(max_length=50)
-    Mobile_number=models.CharField(max_length=50)
-
-    def __str__(self):
-        return f"{self.Name} - {self.submitted_at.strftime('%Y-%m-%d %H:%M')}"
-

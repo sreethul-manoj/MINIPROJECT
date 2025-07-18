@@ -154,16 +154,17 @@
       <th>Mobile number</th>
       
     </tr>
-    <!-- users_list.html (replace static rows in above HTML with this inside <table>) -->
+    
 {% for user in users %}
 <tr>
-  <td>{{ user.Name }}</td>
+  <td>{{ user.fullname }}</td>
   <td>{{ user.email }}</td>
-  <td>{{ user.Mobile_number}}</td>
+  <td>{{ user.mobile_number }}</td>
+  
 </tr>
 {% endfor %}
 
-    <!-- Add more rows as needed -->
+    
   </table>
 
 </body>
